@@ -6,7 +6,7 @@ Amply is a decentralized platform designed to tokenize carbon credits as ERC-20 
 ### **Deployed Website**
 The Amply platform is live and accessible via the following link:
 
-🌍 [Visit AMPLY](https://yourdeployedwebsite.com)
+🌍 [Visit AMPLY](https://kriti-blockchain-1.onrender.com/)
 
 ---
 

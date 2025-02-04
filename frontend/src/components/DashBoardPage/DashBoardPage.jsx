@@ -52,6 +52,29 @@ const Dashboard = (e) => {
   const contractABI = contractArtifact.abi;
   const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 
+
+
+  const checkMetaMask = async () => {
+    if (!window.ethereum) {
+      alert("MetaMask is not installed. Please install it to continue.");
+      return false;
+    }
+    try {
+      const accounts = await window.ethereum.request({ method: "eth_accounts" });
+      if (accounts.length === 0) {
+        const newAccounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setAccount(newAccounts[0]);
+      } else {
+        setAccount(accounts[0]);
+      }
+      return true;
+    } catch (error) {
+      console.error("Error connecting to MetaMask:", error);
+      alert("Failed to connect to MetaMask.");
+      return false;
+    }
+  };
+
   useEffect(() => {
     if (account) {
       connectedToMetamask(account);
@@ -114,6 +137,11 @@ const Dashboard = (e) => {
   };
 
   const handleSellCredit = async (pricePerToken) => {
+
+    if (!(await checkMetaMask())) {
+      setShowSellCreditPopup(false);
+      return;
+    }
     try {
       setMsg("Validating...");
       setUserppt(pricePerToken);
@@ -136,6 +164,7 @@ const Dashboard = (e) => {
         console.log("Response:", response.data);
 
         if (response.data.Output === "0") {
+        setShowSellCreditPopup(false);
           alert("Insufficient Credits");
           return; // Exit function early
         }
@@ -231,6 +260,10 @@ const Dashboard = (e) => {
   };
 
   const handleEarnCredit = async (energyProduced) => {
+    if (!(await checkMetaMask())) {
+      setShowEarnCreditPopup(false);
+      return;
+    }
     setMsg("Validating...");
     setShowEarnCreditPopup(2);
     setEarnCreditAmount(energyProduced / 100);
@@ -428,6 +461,12 @@ const Dashboard = (e) => {
   };
 
   const handleBuyCredit = async (buyConfirmed) => {
+    if (!(await checkMetaMask())) {
+      setShowBuyCreditPopup(false);
+      return;
+    }
+
+
     setMsg("Validating...");
     // console.log(buyConfirmed);
     const orderIds = buyConfirmed.map((tx) => tx.orderId);

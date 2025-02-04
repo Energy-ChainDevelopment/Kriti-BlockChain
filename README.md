@@ -168,23 +168,20 @@ The application should now be running on `http://localhost:3000`.
 
 1. **Dashboard**
 
-   ![dashboard](./Snippets/dashboard.png)
+   ![dashboard](./images/dashboard.png)
 
 3. **Carbon Credit Claim Page**
 
-   ![claim-page](./Snippets/claimCreditPage.png)
+   ![claim-page](./images/claimCreditPage.png)
 
 4. **Placing Sell Order**
 
-   ![trading-interface](./Snippets/placeSellOrder.png)
+   ![trading-interface](./images/placeSellOrder.png)
 
 5. **Placing Buy Order**
 
-   ![trading-interface](./Snippets/BuyOrder.png)
+   ![trading-interface](./images/BuyOrder.png)
 
 ---
 
-
-## License
-This project is open-source and available under the MIT License.
 

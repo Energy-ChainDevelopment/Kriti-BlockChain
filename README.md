@@ -1,10 +1,10 @@
 # AMPLY: A Blockchain-Based Carbon Credit Trading Platform
 
 ## Overview
-CarbonCreditX is a decentralized platform designed to tokenize carbon credits as ERC-20 tokens, ensuring transparency, security, and efficiency in carbon credit trading. Users can earn, buy, and sell carbon credits in an open market while leveraging blockchain technology for verification and trust.
+Amply is a decentralized platform designed to tokenize carbon credits as ERC-20 tokens, ensuring transparency, security, and efficiency in carbon credit trading. Users can earn, buy, and sell carbon credits in an open market while leveraging blockchain technology for verification and trust.
 
 ### **Deployed Website**
-The CarbonCreditX platform is live and accessible via the following link:
+The Amply platform is live and accessible via the following link:
 
 🌍 [Visit AMPLY](https://yourdeployedwebsite.com)
 
@@ -51,10 +51,10 @@ You can also verify the contract on **Sepolia-Etherscan**:
 
 ## Smart Meter & IoT Device Integration
 
-One of the key aspects of CarbonCreditX is the seamless integration of **smart meters and IoT devices** to ensure the authenticity of claimed renewable energy production. This process ensures transparency and prevents fraudulent claims of carbon credits.
+One of the key aspects of Amply is the seamless integration of **smart meters and IoT devices** to ensure the authenticity of claimed renewable energy production. This process ensures transparency and prevents fraudulent claims of carbon credits.
 
 ### **Device Registration**
-To maintain integrity, only registered IoT smart meters can log energy production data. The backend provides an API to register devices on-chain:
+Only the Owner have the access to register a device on chain .To maintain integrity, only registered IoT smart meters can log energy production data. The backend provides an API to register devices on-chain:
 ```javascript
 app.post('/registerDevice', async (req, res) => {
     try {
@@ -127,7 +127,7 @@ This mechanism guarantees that:
 - **Frontend:** React, CSS
 - **Backend:** Node.js, Express.js 
 - **Blockchain:** Solidity, Ethereum (ERC-20 Tokens), ethers.js
-- **Authentication:** Google, Metamask
+- **Authentication:** Local Google, Metamask
 - **Privacy Layer:** ZK-SNARKs (Zero-Knowledge Proofs)
 - **Data Verification:** IoT devices and Smart Meters
 
@@ -138,13 +138,43 @@ This mechanism guarantees that:
 ### Prerequisites
 - Node.js and npm installed.
 - Metamask wallet configured.
-- Access to an Ethereum testnet (e.g., Goerli) for smart contract interactions.
+- Access to an Ethereum testnet (Sepolia) for smart contract interactions.
 
 ### Clone the Repository
 ```sh
-   git clone https://github.com/YourUsername/CarbonCreditX.git
-   cd CarbonCreditX
+   git clone https://github.com/Energy-ChainDevelopment/Kriti-BlockChain.git
+   cd Kriti-BlockChain
 ```
+### Environment Variables
+Create a `.env` file in the backend folder with the following contents:
+```sh 
+MONGO_URI = "MongoDB URI to connect"
+INFURA_PROJECT_ID = "Your Infura Project ID"
+PRIVATE_KEY = "Your Ethereum Private Key"
+ZK_PROOF_KEY = "ZK-SNARK Proof Key"
+CLIENT_ID = "Your Google Client ID"
+CLIENT_SECRET = "Your Google Client Secret"
+CLIENT_URL = "Your Google Client URL"
+SECURITY_TOKEN_MAIL_OTP = "Your Security Token"
+SENDGRID_API_KEY = "Your SendGrid API Key"
+TWILIO_ACCOUNT_SID = "Your Twilio Account SID"
+TWILIO_AUTH_TOKEN = "Your Twilio Auth Token"
+TWILIO_PHONE_NUMBER = "Your Twilio Phone Number"
+CONTRACT_ADDRESS = "Your Smart Contract Address"
+OWNER_PVT_KEY = "Your Owner Private Key"
+DEVICE_PVT_KEY = "Your Device Private Key"
+VERIFIER_CONTRACT_ADDRESS = "Your Verifier Contract Address"
+GENERAL_ACCOUNT_PVT_KEY = "Your General Account Private Key"
+```
+---
+### Frontend Environment Variables
+Create a `.env` file in the frontend folder with the following contents:
+```sh
+VITE_REACT_APP_API_URL = "http://localhost:8080"
+VITE_CONTRACT_ADDRESS =0xF94A195a8Ebb7B0ed48e8B506C785bB1F7bf4732
+```
+---
+
 
 ### Backend Setup
 ```sh
@@ -160,7 +190,7 @@ This mechanism guarantees that:
    npm run dev
 ```
 
-The application should now be running on `http://localhost:3000`.
+The application should now be running on `http://localhost:5173`.
 
 
 

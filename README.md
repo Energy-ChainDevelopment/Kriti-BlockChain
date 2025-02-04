@@ -180,7 +180,7 @@ The application should now be running on `http://localhost:3000`.
 
 5. **Placing Buy Order**
 
-   ![trading-interface](./images/BuyOrder.png)
+   ![trading-interface](./images/BuyOrder.jpg)
 
 ---
 

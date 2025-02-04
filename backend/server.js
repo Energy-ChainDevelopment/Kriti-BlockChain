@@ -20,6 +20,7 @@ const fetchUserData = require("./Models/fetchUserData");
 const removeSellOrder = require("./Models/removeSellOrder");
 const removeBatchOrder = require("./Models/removeBatchOrder");
 const passportStrategy = require("./passport"); // Ensure passport is configured properly here
+const session = require("express-session");
 
 // Initialize Express app
 const app = express();
@@ -29,27 +30,44 @@ app.use(bodyParser.json()); // Parse JSON body
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded body
 
 // Cookie session configuration
+
+app.set("trust proxy", 1); // REQUIRED for Render (behind a proxy)
+
 app.use(
-    cookieSession({
-        name: "session",
-        keys: ["cyberwolve"], // Use secure keys
-        maxAge: 24 * 60 * 60 * 1000, // Session expires in 24 hours
+    session({
+        secret: "doodle", // Replace with a strong random value
+        resave: false,
+        saveUninitialized: false, // Ensure sessions are stored only after login
+        cookie: {
+            secure: true, // Only send cookies over HTTPS
+            httpOnly: true, // Prevent JavaScript access
+            sameSite: "None", // REQUIRED for cross-origin authentication
+        }
     })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Enable CORS
-app.use(
-    cors({
-        origin: "http://localhost:5173", // Adjust this to match your frontend URL
-        methods: "GET,POST,PUT,DELETE",
-        credentials: true,
-    })
-);
 
-const contractArtifact = JSON.parse(fs.readFileSync("./CCToken.json","utf8"));
+
+const corsOptions = {
+    origin: ['https://kriti-blockchain-1.onrender.com', 'http://localhost:5173', 'http://localhost:5178'],
+    methods: ['GET', 'POST', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Allow credentials (cookies, sessions)
+};
+
+app.use(cors(corsOptions));
+// app.use(
+//     cors({
+//         origin: "https://kriti-blockchain-1.onrender.com", // Adjust this to match your frontend URL
+//         methods: "GET,POST,PUT,DELETE",
+//         credentials: true,
+//     })
+// );
+
+const contractArtifact = JSON.parse(fs.readFileSync("./CCtoken.json","utf8"));
 const verifierArtifact = JSON.parse(fs.readFileSync("./Groth16Verifier.json","utf8"));
 
 const contractABI = contractArtifact.abi;

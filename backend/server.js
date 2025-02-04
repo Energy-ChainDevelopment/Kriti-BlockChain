@@ -48,12 +48,15 @@ app.use(
 
 // app.use(
 //     session({
-//         secret: "your_secret_key", // Replace with a strong secret
+//         secret: "doodle", // Replace with a strong random value
 //         resave: false,
-//         saveUninitialized: true,
-//         cookie: { secure: process.env.NODE_ENV === "production" }
+//         saveUninitialized: true, // Ensure sessions are stored only after login
+//         cookie: {
+//             secure: false, // Only send cookies over HTTPS
+//         }
 //     })
 // );
+
 
 app.use(passport.initialize());
 app.use(passport.session());

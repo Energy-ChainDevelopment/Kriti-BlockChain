@@ -33,18 +33,32 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded body
 
 app.set("trust proxy", 1); // REQUIRED for Render (behind a proxy)
 
+// app.use(
+//     session({
+//         secret: "doodle", // Replace with a strong random value
+//         resave: false,
+//         saveUninitialized: false, // Ensure sessions are stored only after login
+//         cookie: {
+//             secure: true, // Only send cookies over HTTPS
+//             httpOnly: true, // Prevent JavaScript access
+//             sameSite: "None", // REQUIRED for cross-origin authentication
+//         }
+//     })
+// );
+
 app.use(
     session({
         secret: "doodle", // Replace with a strong random value
         resave: false,
-        saveUninitialized: false, // Ensure sessions are stored only after login
+        saveUninitialized: true, // Ensure sessions are stored only after login
         cookie: {
-            secure: true, // Only send cookies over HTTPS
-            httpOnly: true, // Prevent JavaScript access
-            sameSite: "None", // REQUIRED for cross-origin authentication
+            secure: false, // Only send cookies over HTTPS
         }
     })
 );
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 

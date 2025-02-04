@@ -268,15 +268,8 @@ const Dashboard = (e) => {
     const contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI, signer);
 
     setMsg("Waiting for Approval...");
-    try{
+
     const tx = await contract.earnCarbonCredit(energyProduced, timestamp);
-    console.log("Response:", response.data);
-  } catch (error) {
-    alert("Error in Claiming your Request...");
-    setShowEarnCreditPopup(false);
-    console.error("Error : ", error);
-    return;
-  }
     setMsg("Processing Your Request...");
     console.log(`earn credit Transaction sent: ${tx.hash}`);
     await tx.wait();
@@ -371,17 +364,10 @@ const Dashboard = (e) => {
     //     console.log("Sell Orders:", orders);
 
     setMsg("Waiting For Approval...");
-    try {
       const tx = await contract.fulfillSellOrder(orderId, amountBN, {
         value: totalPrice,
       });
-      console.log("Response:", response.data);
-    } catch (error) {
-      alert("Error in Buying your Order");
-      setShowBuyCreditPopup(false);
-      console.error("Error in Buying Order:", error);
-      return;
-    }
+      
     setMsg("Processing Your Request...");
 
     console.log(`Transaction sent: ${tx.hash}`);
@@ -460,7 +446,7 @@ const Dashboard = (e) => {
     }, BigInt(0));
 
     setMsg("Waiting For Approval...");
-    try {
+
       const tx = await contract.fulfillBatchOrders(
         orderIds,
         amountsToBuy,
@@ -469,13 +455,7 @@ const Dashboard = (e) => {
           value: totalCost,
         }
       );
-      console.log("Response:", response.data);
-    } catch (error) {
-      alert("Error in Buying your Order");
-      setShowBuyCreditPopup(false);
-      console.error("Error in Buying Order:", error);
-      return;
-    }
+   
     setMsg("Processing Your Request...");
 
     console.log(`Transaction sent: ${tx.hash}`);

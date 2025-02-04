@@ -59,6 +59,9 @@
   bottom: 15%;
   cursor: not-allowed;
 }
+.button-spinner-hover{
+  background-color: #aabb27;
+}
 
 .ValidatingPage-text-parent,.ValidatingPage-spinner,.Loading-container{
   margin: 16% 10%;

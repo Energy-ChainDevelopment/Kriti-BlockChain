@@ -52,7 +52,7 @@ app.use(passport.session());
 
 
 const corsOptions = {
-    origin: ['https://kriti-blockchain-1.onrender.com', 'http://localhost:5173', 'http://localhost:5178'],
+    origin: ['https://blockchaindevelopment.onrender.com', 'http://localhost:5173', 'http://localhost:5178'],
     methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Allow credentials (cookies, sessions)
